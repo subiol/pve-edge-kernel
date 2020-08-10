@@ -1,11 +1,10 @@
 This is a prepackaged version of the Linux kernel binary image.
 
-This package was put together by Proxmox Server
-Solutions GmbH <support@proxmox.com>.
+This package was put together by Fabian Mastenbroek <mail.fabianm@gmail.com>.
 
-We use the RHEL7 kernel sources, available from:
+We use the Ubuntu Mainline kernel sources, available from:
 
-ftp://ftp.redhat.com/redhat/rhel/
+https://kernel.ubuntu.com/~kernel-ppa/mainline/
 
 Linux is copyrighted by Linus Torvalds and others.
 
