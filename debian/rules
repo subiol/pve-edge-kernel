@@ -39,6 +39,16 @@ debian/control: $(wildcard debian/*.in)
 debian/SOURCE:
 	echo "git clone git@github.com:fabianishere/pve-kernel-edge.git\\ngit checkout $(shell git rev-parse HEAD)" > $@
 
+override_dh_quilt_patch:
+	cd linux; QUILT_PATCHES=../debian/patches quilt --quiltrc /dev/null --color=always push -a || test $$? = 2
+
+override_dh_quilt_unpatch:
+	cd linux; QUILT_PATCHES=../debian/patches quilt --quiltrc /dev/null pop -a || test $$? = 2
+	rm -rf linux/.pc
+
+override_dh_auto_configure:
+	dh_quilt_patch -O--sourcedirectory=linux
+
 override_dh_auto_build: .compile_mark .tools_compile_mark .modules_compile_mark
 
 override_dh_auto_install: debian/SOURCE .install_mark .tools_install_mark .headers_install_mark .usr_headers_install_mark
